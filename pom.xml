@@ -63,13 +63,6 @@
             <version>0.9.0.RELEASE</version>
         </dependency>
 
-
-        <!--redis-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-        </dependency>
-
         <!-- 断路器 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
