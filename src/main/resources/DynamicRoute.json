@@ -1,0 +1,41 @@
+[
+  {
+    "id":"demo",
+    "uri": "lb://demo",
+    "predicates":[
+      {
+        "name":"Path",
+        "args":{
+          "patterns":"/rabbit/demo/**"
+        }
+      },
+      {
+        "name":"Test",
+        "args":{
+          "datetime":"aaaaa"
+        }
+      }
+    ],
+    "filters": [
+      {
+        "name":"StripPrefix",
+        "args":{
+          "parts":2
+        }
+      },
+      {
+        "name":"Authentication"
+      },
+      {
+        "name":"CModifyRequestBody"
+      },
+      {
+        "name":"Hystrix",
+        "args":{
+          "name":"fallbackcmd",
+          "fallbackUri":"forward:/fallback"
+        }
+      }
+    ]
+  }
+]

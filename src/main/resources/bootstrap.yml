@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: SpringCloudGateway-Demo
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        group: ${spring.application.name}-group
+        namespace: fccebc09-6706-41df-ba47-3b93654c883c
