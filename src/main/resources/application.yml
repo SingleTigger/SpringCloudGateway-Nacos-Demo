@@ -18,27 +18,28 @@ spring:
             - proxy-authenticate
             - x-application-context
             - upgrade
-## 如果动态路由配置启动，则注释掉routes
-#      routes:
-#        - id: demo
-#          uri: lb://demo
-#          predicates:
-#            - Path=/rabbit/demo/**
-#            - Test=hello
-#          filters:
-#            - StripPrefix=2
-#            - Authentication
-#            - CModifyRequestBody
-#            - name: Hystrix
-#              args:
-#                name: fallbackcmd
-#                fallbackUri: forward:/fallback
-#            - name: RequestRateLimiter
-#              args:
-#                redis-rate-limiter:
-#                  replenishRate: 10
-#                  burstCapacity: 20
-#                key-resolver: "#{@ipKeyResolver}"
+      ## 如果动态路由配置启动，则注释掉routes
+      routes:
+        - id: demo
+          uri: lb://demo
+          predicates:
+            - Path=/rabbit/demo/**
+            - Test=hello
+          filters:
+            - StripPrefix=2
+            - Authentication
+            - CModifyRequest
+            - CModifyResponse
+            - name: Hystrix
+              args:
+                name: fallbackcmd
+                fallbackUri: forward:/fallback
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter:
+                  replenishRate: 10
+                  burstCapacity: 20
+                key-resolver: "#{@ipKeyResolver}"
 ##断路器
 hystrix:
   command:
@@ -53,4 +54,4 @@ hystrix:
 gateway:
   dynamic:
     route:
-      enabled: true
+      enabled: false
