@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Map;
+
 /**
  * Created by chenws on 2019/11/1.
  */
@@ -32,6 +34,24 @@ public final class ObjectMapperUtil {
 
     private ObjectMapperUtil() {
 
+    }
+
+    /**
+     * Obj转Map
+     * @param obj 对象
+     * @param <T> 对象泛型
+     * @return Map集合
+     */
+    public static <T> Map obj2Map(T obj) {
+        if (obj == null) {
+            return null;
+        }
+        try {
+            return objectMapper.readValue(obj2Json(obj),Map.class);
+        } catch (Exception e) {
+            log.warn("对象解析为Map异常", e);
+        }
+        return null;
     }
 
     /**
