@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:8088}
+  port: 8088
 spring:
   cloud:
     gateway:

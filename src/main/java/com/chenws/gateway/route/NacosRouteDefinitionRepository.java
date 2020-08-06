@@ -1,11 +1,12 @@
 package com.chenws.gateway.route;
 
+import com.alibaba.cloud.nacos.NacosConfigManager;
+import com.alibaba.cloud.nacos.NacosConfigProperties;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.nacos.api.config.listener.AbstractListener;
 import com.alibaba.nacos.api.exception.NacosException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.cloud.alibaba.nacos.NacosConfigProperties;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.context.ApplicationEventPublisher;
@@ -55,7 +56,8 @@ public class NacosRouteDefinitionRepository extends AbstractRouteDefinitionRepos
 
     private void addListener() {
         try {
-            nacosConfigProperties.configServiceInstance().addListener(DYNAMIC_ROUTE_DATA_ID, DYNAMIC_ROUTE_GROUP_ID, new AbstractListener() {
+            NacosConfigManager nacosConfigManager = new NacosConfigManager(nacosConfigProperties);
+            nacosConfigManager.getConfigService().addListener(DYNAMIC_ROUTE_DATA_ID, DYNAMIC_ROUTE_GROUP_ID, new AbstractListener() {
                 @Override
                 public void receiveConfigInfo(String configInfo) {
                     log.info("接收到Nacos配置更新事件");

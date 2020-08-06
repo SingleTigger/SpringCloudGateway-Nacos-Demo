@@ -1,8 +1,8 @@
 package com.chenws.gateway.config;
 
+import com.alibaba.cloud.nacos.NacosConfigProperties;
 import com.chenws.gateway.route.NacosRouteDefinitionRepository;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.cloud.alibaba.nacos.NacosConfigProperties;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
