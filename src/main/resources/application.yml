@@ -44,8 +44,13 @@ hystrix:
             ## 超时时间
             timeoutInMilliseconds: 5000
 
+
 ##动态路由配置
 gateway:
   dynamic:
     route:
       enabled: false
+
+logging:
+  level:
+     com.alibaba.nacos.client.config.impl: error
