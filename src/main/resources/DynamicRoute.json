@@ -6,13 +6,13 @@
       {
         "name":"Path",
         "args":{
-          "patterns":"/rabbit/demo/**"
+          "patterns":"/gateway/demo/**"
         }
       },
       {
         "name":"Test",
         "args":{
-          "datetime":"aaaaa"
+          "datetime":"20200809"
         }
       }
     ],
@@ -27,7 +27,10 @@
         "name":"Authentication"
       },
       {
-        "name":"CModifyRequestBody"
+        "name":"CModifyRequest"
+      },
+      {
+        "name":"CModifyResponse"
       },
       {
         "name":"Hystrix",

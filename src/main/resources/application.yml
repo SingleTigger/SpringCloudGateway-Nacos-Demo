@@ -23,8 +23,8 @@ spring:
         - id: demo
           uri: lb://demo
           predicates:
-            - Path=/rabbit/demo/**
-            - Test=hello
+            - Path=/gateway/demo/**
+            - Test=20200809
           filters:
             - StripPrefix=2
             - Authentication
@@ -49,7 +49,7 @@ hystrix:
 gateway:
   dynamic:
     route:
-      enabled: false
+      enabled: true
 
 logging:
   level:
