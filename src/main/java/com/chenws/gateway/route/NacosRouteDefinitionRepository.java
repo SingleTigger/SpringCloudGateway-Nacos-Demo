@@ -43,7 +43,8 @@ public class NacosRouteDefinitionRepository extends AbstractRouteDefinitionRepos
     public Flux<RouteDefinition> getRouteDefinitions() {
         try {
             //加载动态配置
-            String content = nacosConfigProperties.configServiceInstance().getConfig(DYNAMIC_ROUTE_DATA_ID, DYNAMIC_ROUTE_GROUP_ID, 3000);
+            NacosConfigManager nacosConfigManager = new NacosConfigManager(nacosConfigProperties);
+            String content = nacosConfigManager.getConfigService().getConfig(DYNAMIC_ROUTE_DATA_ID, DYNAMIC_ROUTE_GROUP_ID, 3000);
             if(StringUtils.isNotBlank(content)){
                 List<RouteDefinition> routeDefinitions = JSONObject.parseArray(content, RouteDefinition.class);
                 return Flux.fromIterable(Optional.ofNullable(routeDefinitions).orElseGet(ArrayList::new));

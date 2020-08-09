@@ -34,12 +34,6 @@ spring:
               args:
                 name: fallbackcmd
                 fallbackUri: forward:/fallback
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter:
-                  replenishRate: 10
-                  burstCapacity: 20
-                key-resolver: "#{@ipKeyResolver}"
 ##断路器
 hystrix:
   command:
