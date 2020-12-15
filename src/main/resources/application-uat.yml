@@ -1,0 +1,56 @@
+server:
+  port: 8088
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
+      filter:
+        remove-hop-by-hop:
+          headers:
+            - connection
+            - keep-alive
+            - te
+            - trailer
+            - proxy-authorization
+            - proxy-authenticate
+            - x-application-context
+            - upgrade
+      ## 如果动态路由配置启动，则注释掉routes
+      routes:
+        - id: demo
+          uri: lb://demo
+          predicates:
+            - Path=/gateway/demo/**
+            - Test=20200809
+          filters:
+            - StripPrefix=2
+            - Authentication
+            - CModifyRequest
+            - CModifyResponse
+            - name: Hystrix
+              args:
+                name: fallbackcmd
+                fallbackUri: forward:/fallback
+##断路器
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            ## 超时时间
+            timeoutInMilliseconds: 5000
+
+
+##动态路由配置
+gateway:
+  dynamic:
+    route:
+      enabled: true
+
+logging:
+  level:
+     com.alibaba.nacos.client.config.impl: error
