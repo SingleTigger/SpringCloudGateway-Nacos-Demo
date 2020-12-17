@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
  * Created by chenws on 2019/11/4.
  */
 @RestController
-@RequestMapping("")
+@RequestMapping("/v1/test")
 @Slf4j
 public class FallbackController {
 
