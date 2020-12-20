@@ -50,7 +50,7 @@ public class NacosRouteDefinitionRepository extends AbstractRouteDefinitionRepos
                 return Flux.fromIterable(Optional.ofNullable(routeDefinitions).orElseGet(ArrayList::new));
             }
         } catch (NacosException e) {
-            log.error("获取动态路由配置信息失败", e);
+            log.error("Load dynamic route config failed.", e);
         }
         return Flux.fromIterable(new ArrayList<>());
     }
@@ -61,12 +61,12 @@ public class NacosRouteDefinitionRepository extends AbstractRouteDefinitionRepos
             nacosConfigManager.getConfigService().addListener(DYNAMIC_ROUTE_DATA_ID, DYNAMIC_ROUTE_GROUP_ID, new AbstractListener() {
                 @Override
                 public void receiveConfigInfo(String configInfo) {
-                    log.info("接收到Nacos配置更新事件");
+                    log.info("Accept the config updated event form nacos.");
                     publisher.publishEvent(new RefreshRoutesEvent(this));
                 }
             });
         } catch (NacosException e) {
-            log.error("Nacos添加监听器失败", e);
+            log.error("Nacos add listener failed", e);
         }
     }
 
