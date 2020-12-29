@@ -60,7 +60,7 @@ public class CustomErrorWebFluxAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(value = ErrorWebExceptionHandler.class, search = SearchStrategy.CURRENT)
-    @Order(-2)
+    @Order(-3)
     public ErrorWebExceptionHandler errorWebExceptionHandler(ErrorAttributes errorAttributes) {
         //注入自定义的handler
         CustomErrorWebExceptionHandler customErrorWebExceptionHandler = new CustomErrorWebExceptionHandler(
