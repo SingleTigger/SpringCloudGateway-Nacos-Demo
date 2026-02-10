@@ -11,7 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 public class GatewayApplication {
 
-//是启动类
+//启动类
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);
     }
