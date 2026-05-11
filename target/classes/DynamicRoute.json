@@ -1,0 +1,44 @@
+[
+  {
+    "id":"demo",
+    "uri": "lb://demo",
+    "predicates":[
+      {
+        "name":"Path",
+        "args":{
+          "patterns":"/gateway/demo/**"
+        }
+      },
+      {
+        "name":"Test",
+        "args":{
+          "datetime":"20200809"
+        }
+      }
+    ],
+    "filters": [
+      {
+        "name":"StripPrefix",
+        "args":{
+          "parts":2
+        }
+      },
+      {
+        "name":"Authentication"
+      },
+      {
+        "name":"CModifyRequest"
+      },
+      {
+        "name":"CModifyResponse"
+      },
+      {
+        "name":"Hystrix",
+        "args":{
+          "name":"fallbackcmd",
+          "fallbackUri":"forward:/fallback"
+        }
+      }
+    ]
+  }
+]
